@@ -9,43 +9,71 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
+  color: #00ff88;
+  overflow-x: hidden;
+  cursor: none;
+
+  background: radial-gradient(circle at center, #001a0f, #000);
+}
+
+/* GRID GAMER */
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(#00ff8822 1px, transparent 1px),
+                    linear-gradient(90deg, #00ff8822 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: mover 10s linear infinite;
+  z-index: -1;
+}
+
+@keyframes mover {
+  from { transform: translateY(0); }
+  to { transform: translateY(40px); }
 }
 
 /* HEADER */
 header {
-  background: linear-gradient(90deg, #0ea5e9, #6366f1);
+  background: linear-gradient(90deg, #003d26, #001a0f);
   padding: 50px 20px;
   text-align: center;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: aparecer 0.8s ease forwards;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-header p {
-  margin-top: 10px;
-  font-size: 18px;
-}
-
-/* SEÇÕES */
 section {
   padding: 40px 20px;
   max-width: 900px;
   margin: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 0.8s ease forwards;
+}
+
+section:nth-of-type(1) { animation-delay: 0.2s; }
+section:nth-of-type(2) { animation-delay: 0.4s; }
+section:nth-of-type(3) { animation-delay: 0.6s; }
+section:nth-of-type(4) { animation-delay: 0.8s; }
+section:nth-of-type(5) { animation-delay: 1s; }
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 h2 {
-  color: #38bdf8;
-  border-bottom: 2px solid #38bdf8;
-  padding-bottom: 5px;
+  color: #00ff88;
+  border-bottom: 2px solid #00ff88;
 }
 
 /* CARDS */
 .card {
-  background: #1e293b;
+  background: #001a0f;
   padding: 15px;
   margin: 10px 0;
   border-radius: 10px;
@@ -54,35 +82,42 @@ h2 {
 
 .card:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 15px #00ff88;
 }
 
 /* LINKS */
 a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  color: #00ff88;
 }
 
 /* BOTÃO */
 button {
-  background: #38bdf8;
+  background: #00ff88;
+  color: black;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
+  cursor: none;
 }
 
 /* FOOTER */
 footer {
   text-align: center;
   padding: 20px;
-  background: #020617;
+  background: #000;
   margin-top: 30px;
-  font-size: 14px;
+  opacity: 0;
+  animation: aparecer 0.8s ease forwards;
+  animation-delay: 1.2s;
+}
+
+/* CANVAS DO NEON */
+#neonCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 999;
 }
 </style>
 
@@ -90,28 +125,30 @@ footer {
 
 <body>
 
+<canvas id="neonCanvas"></canvas>
+
 <header>
   <h1>Henry Magno do Carmo Borges</h1>
-  <p>Estudante de Engenharia da Computação</p>
+  <p>🎮 Estudante de Engenharia da Computação</p>
 </header>
 
 <section>
-  <h2>Sobre mim</h2>
+  <h2>👤 Sobre mim</h2>
   <p>Sou estudante de Engenharia da Computação com interesse em desenvolvimento web e criação de sistemas.</p>
   <p>Busco sempre aprender, evoluir minhas habilidades e transformar ideias em projetos reais.</p>
-  <p>Quero poder dar vida as ideias que as pessoas possuem, pois as mais brilhantes ideias surgem das mais simples pessoas.</p> 
+  <p>Quero poder dar vida as ideias que as pessoas possuem, pois as ideias mais brilhantes vem das pessoas mais simples.</p> 
 </section>
 
 <section>
-  <h2>Interesses</h2>
-  <div class="card">Tecnologia</div>
-  <div class="card">Desenvolvimento Web</div>
-  <div class="card">Jogos Eletrônicos</div>
-  <div class="card">RPG de Mesa</div>
+  <h2>🔥 Interesses</h2>
+  <div class="card">💻 Tecnologia</div>
+  <div class="card">🌐 Desenvolvimento Web</div>
+  <div class="card">🎮 Jogos Eletrônicos</div>
+  <div class="card">🎲 RPG de Mesa</div>
 </section>
 
 <section>
-  <h2>Conhecimentos</h2>
+  <h2>🧠 Conhecimentos</h2>
   <div class="card">HTML</div>
   <div class="card">CSS3</div>
   <div class="card">JavaScript</div>
@@ -119,29 +156,24 @@ footer {
 </section>
 
 <section>
-  <h2>Projetos</h2>
+  <h2>🚀 Projetos</h2>
   <div class="card">
     <h3>Portfólio Pessoal</h3>
-    <p>Desenvolvimento deste site utilizando HTML, CSS e JavaScript.</p>
+    <p>Site portfólio feito com HTML,CCS3 e JavaScript.</p>
   </div>
 
   <div class="card">
     <h3>Bot para Discord</h3>
-    <p>Criação e auxílio no desenvolvimento de bot para automação em servidor.</p>
+    <p>Criação e auxilio de bots de automação na plataforma discord.</p>
   </div>
 </section>
 
 <section>
-  <h2>Contato</h2>
+  <h2>📬 Contato</h2>
   <p>Email: henrymagno2007@gmail.com</p>
 
-  <p>
-    <a href="https://github.com/Xhenry-37" target="_blank">GitHub</a>
-  </p>
-
-  <p>
-    <a href="https://www.linkedin.com/in/henry-magno-127393385" target="_blank">LinkedIn</a>
-  </p>
+  <p><a href="https://github.com/Xhenry-37" target="_blank">GitHub</a></p>
+  <p><a href="https://www.linkedin.com/in/henry-magno-127393385" target="_blank">LinkedIn</a></p>
 
   <button onclick="msg()">Clique aqui</button>
 </section>
@@ -154,6 +186,46 @@ footer {
 function msg(){
   alert("Obrigado por visitar meu portfólio!");
 }
+
+/* NEON TRAIL SUAVE */
+const canvas = document.getElementById("neonCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let points = [];
+
+document.addEventListener("mousemove", (e) => {
+  points.push({ x: e.clientX, y: e.clientY });
+  if (points.length > 30) points.shift();
+});
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.beginPath();
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    ctx.lineTo(p.x, p.y);
+  }
+
+  ctx.strokeStyle = "#00ff88";
+  ctx.lineWidth = 3;
+  ctx.shadowColor = "#00ff88";
+  ctx.shadowBlur = 15;
+  ctx.stroke();
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+
+/* RESPONSIVO */
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 </script>
 
 </body>
